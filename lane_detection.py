@@ -71,7 +71,7 @@ vidcap = cv2.VideoCapture(0)
 
 def nothing(x):
     pass
-4
+
 cv2.namedWindow("Trackbars")
 
 cv2.createTrackbar("L - H","Trackbars",  101,255,nothing)
