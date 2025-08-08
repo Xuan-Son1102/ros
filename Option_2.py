@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 
-vidcap = cv2.VideoCapture("Video_Lane_demo/demo.mp4")
+vidcap = cv2.VideoCapture(0)
 success, image = vidcap.read()
 
 def nothing(x):
@@ -10,12 +10,12 @@ def nothing(x):
 
 cv2.namedWindow("Trackbars")
 
-cv2.createTrackbar("L - H","Trackbars",  101,255,nothing)
-cv2.createTrackbar("L - S","Trackbars",  14,255,nothing)
+cv2.createTrackbar("L - H","Trackbars",  0,255,nothing)
+cv2.createTrackbar("L - S","Trackbars",  0,255,nothing)
 cv2.createTrackbar("L - V","Trackbars",0,255,nothing)
 cv2.createTrackbar("U - H","Trackbars",255,255,nothing)
 cv2.createTrackbar("U - S","Trackbars", 255,255,nothing)
-cv2.createTrackbar("U - V","Trackbars",101,255,nothing)
+cv2.createTrackbar("U - V","Trackbars",132,255,nothing)
 
 prevLx = []
 prevRx = []
@@ -141,10 +141,8 @@ while True:
         cv2.putText(result, f'Angle: {steering_angle:.2f} deg', (30, 110), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
 
         # Hiển thị
-        cv2.imshow("Original", frame)
         cv2.imshow("Bird's Eye View", birdseye)
         cv2.imshow("Lane Detection - Image Thresholding", mask)
-        cv2.imshow("Lane Detection - Sliding Windows", msk)
         cv2.imshow('Lane Detection', result)
     if cv2.waitKey(20) & 0xFF == 27:  # Nhấn ESC để thoát
         break
